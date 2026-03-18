@@ -1,18 +1,21 @@
 import { Link } from "@tanstack/react-router";
 
-function MovieCard({ title, year, poster, imdbRating, imdbID }) {
-  const isMissing = !poster || poster === "N/A";
+function MovieCard({ Title, Year, Poster, imdbID }) {
+  const isMissing = !Poster || Poster === "N/A";
   return (
     <Link to={`/film/${imdbID}`}>
       <article className="movie-card flex flex-col items-center bg-white p-4 rounded shadow">
-        <h2>{title}</h2>
-        <p>{year}</p>
+        <h2>{Title}</h2>
+        <p>{Year}</p>
         {isMissing ? (
-          <p>Poster non disponible</p>
+          <img
+            src="https://via.placeholder.com/300x400?text=No+Poster"
+            alt="Poster non disponible"
+            className="w-full h-auto"
+          />
         ) : (
-          <img src={poster} alt={title} className="w-full h-auto" />
+          <img src={Poster} alt={Title} className="w-full h-auto" />
         )}
-        <p>IMDb Rating: {imdbRating}</p>
         <p>IMDb ID: {imdbID}</p>
       </article>
     </Link>

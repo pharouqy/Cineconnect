@@ -7,7 +7,7 @@ import {
 
 export function useMovies(query, page = 1) {
   return useQuery({
-    queryKey: ["movies", query, page].search(query, page),
+    queryKey: ["movies", query, page],
     queryFn: () => searchMovies(query, page),
 
     enabled: !!query && query.trim().length > 0, // ne lance pas si query vide
@@ -18,7 +18,7 @@ export function useMovies(query, page = 1) {
 
 export function useMovie(id) {
   return useQuery({
-    queryKey: ["movie", id].getMovieById(id),
+    queryKey: ["movie", id],
     queryFn: () => getMovieById(id),
     enabled: !!id, // ne lance pas si id est falsy
   });
@@ -26,7 +26,7 @@ export function useMovie(id) {
 
 export function useMoviesByCategory(category, page = 1) {
   return useQuery({
-    queryKey: ["movies", category, page].getMovieByCategory(category, page),
+    queryKey: ["movies", category, page],
     queryFn: () => getMovieByCategory(category, page),
     enabled: !!category, // ne lance pas si category est falsy
     staleTime: 1000 * 60 * 5, // cache valide 5 min
