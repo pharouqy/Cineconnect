@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useSearch } from "@tanstack/react-router";
-import MovieCard from "../components/MovieCard";
+import MovieCards from "../components/MovieCards";
 import ErrorMessage from "../components/ErrorMessage";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useMoviesByCategory } from "../hooks/useMovies";
@@ -41,7 +41,7 @@ function FilmsCategorie() {
         )}
         {isLoading && <LoadingSpinner />}
         {moviesList.map((movie) => (
-          <MovieCard key={movie.imdbID} {...movie} />
+          <MovieCards key={movie.imdbID} {...movie} />
         ))}
       </div>
       {!isLoading && !isError && moviesList.length > 0 && (
