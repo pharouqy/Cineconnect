@@ -60,10 +60,7 @@ function MovieCard({
         />
 
         <div className="w-full mt-4 flex justify-center items-center">
-          <Ratings
-            storageKey={imdbID ? `userRating:${imdbID}` : undefined}
-            label="Votre note"
-          />
+          <Ratings />
         </div>
 
         <p className="text-gray-500">{Director}</p>
