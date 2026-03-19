@@ -11,10 +11,14 @@ function MovieCard({ Title, Year, Poster, imdbID }) {
           <img
             src="https://via.placeholder.com/300x400?text=No+Poster"
             alt="Poster non disponible"
-            className="w-full h-auto"
+            className="w-full"
           />
         ) : (
-          <img src={Poster} alt={Title} className="w-full h-auto" />
+          <img
+            src={Poster}
+            alt={Title}
+            className="w-full object-cover mb-4 h-64"
+          />
         )}
         <p>IMDb ID: {imdbID}</p>
       </article>

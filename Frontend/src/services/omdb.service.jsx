@@ -48,10 +48,10 @@ export async function getMovieById(id) {
   return data;
 }
 
-export async function getMovieByCategory(category, page = 1) {
+export async function getMovieByCategory(category, query, page = 1) {
   if (!category) throw new Error("Catégorie requise");
 
-  const url = `${BASE_URL}/?type=${category}&page=${page}&apikey=${API_KEY}`;
+  const url = `${BASE_URL}/?type=${category}&s=${query}&page=${page}&apikey=${API_KEY}`;
   const response = await fetch(url);
 
   if (!response.ok) {

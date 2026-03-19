@@ -24,11 +24,11 @@ export function useMovie(id) {
   });
 }
 
-export function useMoviesByCategory(category, page = 1) {
+export function useMoviesByCategory(category, query, page = 1) {
   return useQuery({
-    queryKey: ["movies", category, page],
-    queryFn: () => getMovieByCategory(category, page),
-    enabled: !!category, // ne lance pas si category est falsy
+    queryKey: ["movies", category, query, page],
+    queryFn: () => getMovieByCategory(category, query, page),
+    enabled: !!category && !!query && query.trim().length > 0, // ne lance pas si category ou query est vide
     staleTime: 1000 * 60 * 5, // cache valide 5 min
     placeholderData: (prev) => prev, // garde les données précédentes pendant le chargement
   });
