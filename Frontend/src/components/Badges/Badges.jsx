@@ -1,6 +1,6 @@
 import { Link, useParams, useSearch } from "@tanstack/react-router";
 
-export function CategoryBadges({
+export function Badges({
   // Mode par défaut : badge "type" (films/series) qui met à jour params.categorie
   mode = "categorie", // "categorie" | "search"
   // Dans mode="categorie" : garde la query actuelle (t=<searchQuery>) en changeant de catégorie.

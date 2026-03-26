@@ -4,6 +4,7 @@ import MovieCards from "../components/MovieCards";
 import ErrorMessage from "../components/ErrorMessage";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useMoviesByCategory } from "../hooks/useMovies";
+import Button from "../components/Buttons/Button";
 
 function FilmsCategorie() {
   const { categorie } = useParams({ strict: false });
@@ -47,24 +48,23 @@ function FilmsCategorie() {
       {!isLoading && !isError && moviesList.length > 0 && (
         <>
           <div className="flex justify-center items-center gap-2 mb-4 text-gray-400">
-            <button
-              onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-              disabled={page === 1}
-              className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors"
-            >
-              Précédente
-            </button>
-            <p>{page}</p>
-            <button
-              onClick={() => setPage((prev) => prev + 1)}
-              className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors"
-              disabled={
-                page === Math.ceil(movies.totalResults / 10) ||
-                movies.totalResults === 0
-              }
-            >
-              Suivante
-            </button>
+              <Button
+                onClick={() => setPage((prev) => Math.max(1, prev - 1))}
+                className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors"
+              >
+                {"<"}
+              </Button>
+              <p>{page}</p>
+              <Button
+                onClick={() =>
+                  setPage((prev) =>
+                    Math.min(prev + 1, Math.ceil(movies.totalResults / 10)),
+                  )
+                }
+                className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors"
+              >
+                {">"}
+              </Button>
           </div>
           <div className="flex justify-center items-center gap-2 mb-4 text-gray-400">
             <span>

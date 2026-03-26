@@ -1,11 +1,163 @@
+/* src/index.css */
 @import "tailwindcss";
 
-body {
-  margin: 0;
-  font-family:
-    -apple-system, "Roboto", "Segoe UI", "Verdana", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f2f2f2;
+@theme {
+  /* =============================================
+     COULEURS — Palette cinéma Letterboxd
+  ============================================= */
+
+  /* Primary — Orange cinématographique */
+  --color-primary-50: #fff4ed;
+  --color-primary-100: #ffe8d9;
+  --color-primary-200: #ffceb3;
+  --color-primary-300: #ffb38c;
+  --color-primary-400: #ff9966;
+  --color-primary-500: #ff8c42;
+  --color-primary: #ff8c42; /* DEFAULT → classe bg-primary */
+  --color-primary-600: #ff6b0d;
+  --color-primary-700: #d65500;
+  --color-primary-800: #a34000;
+  --color-primary-900: #702c00;
+
+  /* Secondary — Vert social/interaction */
+  --color-secondary-50: #e6fbf5;
+  --color-secondary-100: #ccf7eb;
+  --color-secondary-200: #99efd7;
+  --color-secondary-300: #66e7c3;
+  --color-secondary-400: #33dfaf;
+  --color-secondary-500: #00c896;
+  --color-secondary: #00c896;
+  --color-secondary-600: #00a077;
+  --color-secondary-700: #007858;
+  --color-secondary-800: #00503a;
+  --color-secondary-900: #00281d;
+
+  /* Accent — Or pour les étoiles */
+  --color-accent-50: #fffef5;
+  --color-accent-100: #fffceb;
+  --color-accent-200: #fff9d6;
+  --color-accent-300: #fff5c2;
+  --color-accent-400: #fff2ad;
+  --color-accent-500: #ffd700;
+  --color-accent: #ffd700;
+  --color-accent-600: #d6b300;
+  --color-accent-700: #ad9000;
+  --color-accent-800: #856d00;
+  --color-accent-900: #5c4a00;
+
+  /* Dark — Noir cinéma Letterboxd */
+  --color-dark-50: #3a4148;
+  --color-dark-100: #2c3238;
+  --color-dark-200: #232830;
+  --color-dark-300: #1d2228;
+  --color-dark-400: #181d21;
+  --color-dark-500: #14181c;
+  --color-dark: #14181c;
+  --color-dark-600: #0f1215;
+  --color-dark-700: #0a0c0e;
+  --color-dark-800: #050607;
+  --color-dark-900: #000000;
+
+  /* Light — Blanc cassé */
+  --color-light-50: #ffffff;
+  --color-light-100: #f8f9fa;
+  --color-light: #f8f9fa;
+  --color-light-200: #e9ecef;
+  --color-light-300: #dee2e6;
+  --color-light-400: #ced4da;
+  --color-light-500: #adb5bd;
+  --color-light-600: #868e96;
+  --color-light-700: #495057;
+  --color-light-800: #343a40;
+  --color-light-900: #212529;
+
+  /* Couleurs sémantiques */
+  --color-success: #00c896;
+  --color-success-light: #33dfaf;
+  --color-success-dark: #007858;
+
+  --color-warning: #ffb020;
+  --color-warning-light: #ffc555;
+  --color-warning-dark: #d68e00;
+
+  --color-error: #ef4444;
+  --color-error-light: #f87171;
+  --color-error-dark: #dc2626;
+
+  --color-info: #3b82f6;
+  --color-info-light: #60a5fa;
+  --color-info-dark: #2563eb;
+
+  /* Overlays — modals et arrière-plans */
+  --color-overlay-light: rgba(20, 24, 28, 0.5);
+  --color-overlay-medium: rgba(20, 24, 28, 0.75);
+  --color-overlay-dark: rgba(20, 24, 28, 0.9);
+
+  /* =============================================
+     TYPOGRAPHIE cinématographique
+  ============================================= */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Bebas Neue", "Inter", system-ui, sans-serif;
+  --font-mono: "Fira Code", monospace;
+
+  /* =============================================
+     ESPACEMENTS custom
+  ============================================= */
+  --spacing-18: 4.5rem;
+  --spacing-88: 22rem;
+  --spacing-112: 28rem;
+  --spacing-128: 32rem;
+
+  /* =============================================
+     BORDER RADIUS cinématographique
+  ============================================= */
+  /* --radius-4xl: 2rem est déjà dans le thème par défaut v4 */
+  --radius-5xl: 2.5rem;
+
+  /* =============================================
+     BOX SHADOWS — depth & glow
+  ============================================= */
+  --shadow-glow-primary: 0 0 20px rgba(255, 140, 66, 0.3);
+  --shadow-glow-accent: 0 0 20px rgba(255, 215, 0, 0.3);
+  --shadow-card:
+    0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+  --shadow-card-hover:
+    0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+
+  /* =============================================
+     ANIMATIONS + KEYFRAMES (dans @theme en v4)
+  ============================================= */
+  --animate-fade-in: fadeIn 0.3s ease-in-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-pulse-glow: pulseGlow 2s ease-in-out infinite;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    }
+  }
 }

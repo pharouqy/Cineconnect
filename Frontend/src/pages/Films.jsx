@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 
-import { CategoryBadges } from "../components/Categories";
+import { Badges } from "../components/Badges/Badges";
 
 import MovieGrid from "../components/MovieGrid";
 import ErrorMessage from "../components/ErrorMessage";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useMovies } from "../hooks/useMovies";
+
+import Button from "../components/Buttons/Button";
+import Input from "../components/inputs/input";
+import Modal from "../components/Modals/Modal";
 
 function Films() {
   const [query, setQuery] = useState("");
@@ -35,20 +39,25 @@ function Films() {
 
   return (
     <>
-      <div className="films-page p-4">
+      <div className="films-page p-4 font-display">
         <h1 className="text-2xl font-bold mb-4">Films</h1>
         <form action="" className="mb-4" onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="text"
+          <Input
             placeholder="Rechercher un film..."
-            className="bg-gray-800 text-gray-400 placeholder:text-gray-500 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 rounded-md py-2 px-4"
+            type="text"
+            value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
         </form>
-        <CategoryBadges searchQuery={debouncedQuery} />
+        <Badges searchQuery={debouncedQuery} />
         {loading && <LoadingSpinner size="md" text="Chargement des films..." />}
         {isError && (
-          <ErrorMessage message={error?.message} onRetry={() => setQuery("")} />
+          <Modal onClose={() => setQuery("")}>
+            <ErrorMessage
+              message={error?.message}
+              onRetry={() => setQuery("")}
+            />
+          </Modal>
         )}
         {!loading &&
           !isError &&
@@ -75,24 +84,23 @@ function Films() {
         query.length > 0 && (
           <>
             <div className="flex justify-center items-center gap-2 mb-4 text-gray-400">
-              <button
+              <Button
                 onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-                disabled={page === 1}
                 className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors"
               >
-                Précédente
-              </button>
+                {"<"}
+              </Button>
               <p>{page}</p>
-              <button
-                onClick={() => setPage((prev) => prev + 1)}
-                className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors"
-                disabled={
-                  page === Math.ceil(movies.totalResults / 10) ||
-                  movies.totalResults === 0
+              <Button
+                onClick={() =>
+                  setPage((prev) =>
+                    Math.min(prev + 1, Math.ceil(movies.totalResults / 10)),
+                  )
                 }
+                className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors"
               >
-                Suivante
-              </button>
+                {">"}
+              </Button>
             </div>
             <div className="flex justify-center items-center gap-2 mb-4 text-gray-400">
               <span>Total de pages: {Math.ceil(movies.totalResults / 10)}</span>{" "}

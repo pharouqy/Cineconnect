@@ -3,20 +3,23 @@ import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 function Layout() {
   return (
-    <>
+    <div className="font-display">
       {/* Navbar simple pour tester la navigation */}
-      <header className="bg-gray-800 flex justify-center items-center">
+      <header className="bg-dark flex justify-center items-center font-display">
         <nav className="flex gap-4 p-4">
-          <Link to="/" className="text-blue-500">
+          <Link
+            to="/"
+            className="text-accent-500 not-pointer-none:will-change-scroll"
+          >
             Accueil
           </Link>
-          <Link to="/films" className="text-blue-500">
+          <Link to="/films" className="text-accent-500">
             Films
           </Link>
-          <Link to="/profil" className="text-blue-500">
+          <Link to="/profil" className="text-accent-500">
             Profil
           </Link>
-          <Link to="/discussion" className="text-blue-500">
+          <Link to="/discussion" className="text-accent-500">
             Discussion
           </Link>
         </nav>
@@ -27,7 +30,7 @@ function Layout() {
       </section>
       {/* Devtools visible en bas de page (dev only) */}
       <TanStackRouterDevtools />
-    </>
+    </div>
   );
 }
 

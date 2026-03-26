@@ -1,4 +1,9 @@
 import { useState } from "react";
+import Button from "../Buttons/Button";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 function Ratings({ onRateChange }) {
   const [displayValue, setDisplayValue] = useState(0);
   const [currentValue, setCurrentValue] = useState(0);
@@ -34,7 +39,7 @@ function Ratings({ onRateChange }) {
                 active ? "text-yellow-500" : "text-gray-300"
               }`}
             >
-              ★
+              <FontAwesomeIcon icon={faStar} />
             </button>
           );
         })}

@@ -1,5 +1,5 @@
-import { CategoryBadges } from "./Categories";
-import Ratings from "./Ratings";
+import { Badges } from "./Badges/Badges";
+import Ratings from "./Ratings/Ratings";
 
 function MovieCard({
   Title,
@@ -52,7 +52,7 @@ function MovieCard({
         <p className="text-gray-500">{Released}</p>
         <p className="text-gray-500">{Runtime}</p>
 
-        <CategoryBadges
+        <Badges
           mode="search"
           badgeValue="label"
           categorieOverride={categorieType}
